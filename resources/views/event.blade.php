@@ -1,6 +1,10 @@
 @extends('layouts.master',["title"=>"Events"]) 
+@inject('date', 'App\Utils\Date')
+{{-- ici en haut je fais une injection de la classe qui a ete cree dans le nameSpace Utils --}}
+
 {{-- la haut j'extencie mon layout et en meme temps je passe une variable en parametre , cela peut etre utile --}}
 @section('content')
+
 <h3>voici la liste de tous les evenements</h3>
     <ul>
        @foreach ($events as $event)
@@ -9,7 +13,13 @@
     </ul>
 
     @section('footer')
-        Ndeme Yvan &copy 2020
+        Ndeme Yvan &copy 2020 
+        @if ($date->isWeekend())
+        {{-- Ensuite ici je fais appel a cette method dont jai besoin --}}
+        c'est le weekend 
+        @else
+        ce n'est pas le weekend
+    @endif
     @endsection
 
     @section('script.footer')
