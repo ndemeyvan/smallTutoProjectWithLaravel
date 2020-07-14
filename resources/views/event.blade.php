@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Events</title>
-</head>
-<body>
-    <h3>voici la liste de tous les evenements</h3>
+@extends('layouts.master',["title"=>"Events"]) 
+{{-- la haut j'extencie mon layout et en meme temps je passe une variable en parametre , cela peut etre utile --}}
+@section('content')
+<h3>voici la liste de tous les evenements</h3>
     <ul>
        @foreach ($events as $event)
             <li>{{$event}}</li>
        @endforeach
     </ul>
-</body>
-</html>
+
+    @section('footer')
+        Ndeme Yvan &copy 2020
+    @endsection
+@endsection
