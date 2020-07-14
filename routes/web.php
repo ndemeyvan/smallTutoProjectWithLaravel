@@ -16,6 +16,23 @@ Route::get('/', function () {
 });
 
 Route::get('/event', function () {
+     dd(DB::table('posts')->whereId('1')->get()); 
+     //recupere celui qui a lid 1
+
+
+    //  dd(DB::table('posts')->whereId('1')->update(
+    //      [ 
+    //          'title'=> 'titre 1',
+    //          'body'=> 'body 1',
+
+    //  ])); 
+     //recupere celui qui a lid 1 et le met a jour 
+
+    // DB::table('posts')->insert([
+    //     'id'=>2,
+    //     'title'=>'2 Article',
+    //     'body'=>'3 Contenu',
+    // ]); insere une valeur dans la table post
 
     $events = [
         "seven Gps",
