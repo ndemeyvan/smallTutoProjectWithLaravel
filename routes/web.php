@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/event', function () {
+
+    $events = [
+        "seven Gps",
+        "Seven Dma",
+        "Seven Academy"
+    ];
+
+    return view('event',compact("events"));
+});
