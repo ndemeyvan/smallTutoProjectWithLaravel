@@ -34,9 +34,16 @@ Route::post('/url', function () {
    $record = Url::where('url',$url)->first();
 
    $data=['url'=>$url];
-
-   $validation = Validator::make($data,['url'=>'required|url'])->validate();
-  
+   //on aurai pu aussi utiliser compact
+   /*$validation = Validator::make(
+      $data,
+      ['url'=>'required|url'],
+      ['required'=>'Ce champs est requis','url.url'=>'Ce url est invalide'],
+      )->validate();*/
+      //ceci est une premiere facon de le faire , mais c'est mieux avec la translation
+      $validation = Validator::make(
+         $data,
+         ['url'=>'required|url'])->validate();
   
    if ($record) {
 
