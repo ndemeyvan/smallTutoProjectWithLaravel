@@ -14,10 +14,7 @@ class UrlController extends Controller
 
      public  function store (Request $request) {
 
-        $url = $request->get('url');
-        $record = Url::where('url',$url)->first();
-     
-        $data=['url'=>$url];
+        //$data=['url'=>$url];
         //on aurai pu aussi utiliser compact
         /*$validation = Validator::make(
            $data,
@@ -27,37 +24,17 @@ class UrlController extends Controller
            //ceci est une premiere facon de le faire , mais c'est mieux avec la translation
      
           //\Validator::make($data, ['url'=>'required|url'])->validate();
-              $this->validate($request,['url'=>'required|url']);
-       
-        if ($record) {
-     
-           $shortUrl = $record->shortened;
-           return view('url.result',compact('shortUrl'));
-     
-        } else {
-          
-           $object = Url::create([
-              'url'=> $url,
-              'shortened'=> Url::getUniqueUrl(),
-           ]);
-     
-           if($object){
-              
-              return view('url.result',)->with('shortUrl',$object->shortened);
-     
-           }else{
-              return redirect('/url');
-           }
-           
-     
-        }
-       
+
+          $this->validate($request,['url'=>'required|url']);
+          $record = $this->getrequestForUrl($request->get('url'));
+          return view('url.result',)->with('shortUrl',$record->shortened);
+
      }
 
 
      public function show ($shortened) {
 
-        $events = Url::where('shortened',$shortened)->first();
+        $events = Url::where('shortened',$shortened)->firstOrFail();
         if(!$events){
            return redirect('/url');
         }else{
@@ -65,4 +42,34 @@ class UrlController extends Controller
         }
 
      }
+
+     private function getrequestForUrl($url){
+      
+        return Url::firstOrCreate(
+            ['url'=>$url],
+            ['shortened'=> Url::getUniqueUrl()]
+        );
+
+
+        // return Url::where('url',$url)->firstOrCreate(
+        //     ['url'=>$url],
+        //     ['shortened'=> Url::getUniqueUrl()]
+        // );
+        
+        // ceci est le resumer en une ligne de ce qui est la en bas 
+        /* $record = Url::where('url',$url)->first(); 
+        if ($record) {
+            return $record;
+         } else {
+             return $object = Url::create([
+                 'url'=> $url,
+                'shortened'=> Url::getUniqueUrl(),
+              ]);
+         }*/
+          
+
+
+     }
+
+
 }
