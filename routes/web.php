@@ -11,12 +11,66 @@
 |
 */
 use App\Post;
+use App\Url;
 
 Route::get('/', function () {
     // $post = Post::create(['id'=>3,'title'=>'un second title','body'=>'un second contenu']);
     // $post->save(); au cas ou on a pas utiliser le create
 
     return view('welcome');
+});
+
+
+Route::get('/url', function () {
+  
+   return view('url.index');
+});
+
+
+Route::post('/url', function () {
+
+ 
+   $url = request('url');
+   $record = Url::where('url',$url)->first();
+
+   $data=['url'=>$url];
+
+   $validation = Validator::make($data,['url'=>'required|url'])->validate();
+  
+  
+   if ($record) {
+
+      $shortUrl = $record->shortened;
+      return view('url.result',compact('shortUrl'));
+
+   } else {
+     
+      $object = Url::create([
+         'url'=> $url,
+         'shortened'=> Url::getUniqueUrl(),
+      ]);
+
+      if($object){
+         
+         return view('url.result',)->with('shortUrl',$object->shortened);
+
+      }else{
+         return redirect('/url');
+      }
+      
+
+   }
+  
+});
+
+
+Route::get('/{shortened}', function ($shortened) {
+   $events = Url::where('shortened',$shortened)->first();
+   if(!$events){
+      return redirect('/url');
+   }else{
+      return redirect(  $events->url);
+   }
 });
 
 Route::get('/events', function () {
@@ -70,8 +124,8 @@ Route::get('/events', function () {
         'price'=> 0,     
       ]); */
 
-   //  $events = App\Event::all();
-   
+    $events = App\Event::all();
+
    //  $events = App\Event::first();
    //  $events->price =80;
    //  $events->save();

@@ -41,14 +41,8 @@ class Event extends Model
                 $events->save();
             
             */
-            dd('ffff');
+            //dd('ffff');
     }
-
-
-
-
-
-
 
 
     /*
