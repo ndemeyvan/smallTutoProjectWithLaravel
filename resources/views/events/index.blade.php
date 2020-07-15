@@ -18,12 +18,12 @@
     <article > 
           <h4>{{$event->name}}</h4>
           <p>{{$event->description}}</p>
-          <p> {!!format_price($event)!!}
+          <p> {!! format_price($event) !!}
 
                
             </p>
           <p>{{$event->location}}</p>
-          <p>Jour/Heure : {{ $event->start_at->format('d/m/y H:i')}}</p>
+          <p>Jour/Heure : {{ format_date($event->start_at) }}</p>
           </article>
           {{-- grace a $loop je peux savoir si il sagit du dernie element et ainsi ne pas afficher le hr si c'est le dernie , sinn il faut un tour sur la documentation --}}
           @if (!$loop->last)
