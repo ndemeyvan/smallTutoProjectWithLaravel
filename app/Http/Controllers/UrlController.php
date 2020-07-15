@@ -12,9 +12,9 @@ class UrlController extends Controller
         return view('url.index');
      }
 
-     public  function store () {
+     public  function store (Request $request) {
 
-        $url = request('url');
+        $url = $request->get('url');
         $record = Url::where('url',$url)->first();
      
         $data=['url'=>$url];
@@ -26,9 +26,8 @@ class UrlController extends Controller
            )->validate();*/
            //ceci est une premiere facon de le faire , mais c'est mieux avec la translation
      
-           $validation = \Validator::make(
-              $data,
-              ['url'=>'required|url'])->validate();
+          //\Validator::make($data, ['url'=>'required|url'])->validate();
+              $this->validate($request,['url'=>'required|url']);
        
         if ($record) {
      
