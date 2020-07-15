@@ -70,6 +70,11 @@ Route::get('/events', function () {
         'price'=> 0,     
       ]); */
 
-    $events = App\Event::all();
+   //  $events = App\Event::all();
+   
+   //  $events = App\Event::first();
+   //  $events->price =80;
+   //  $events->save();
+
     return view('events.index',compact("events"));
 });

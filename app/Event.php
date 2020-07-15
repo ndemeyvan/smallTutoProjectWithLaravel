@@ -19,8 +19,44 @@ class Event extends Model
     //lire sur le casting en documentation
     // la commande php artisan tinker permet d'ouvrir une invite ou on peux executer les commandes laravel
 
+    protected $appends = ['fake_price'] ; // celui ci va ajouter le faux attribut fake price a notre model
+    
     public function isFree(){
         return $this->price == 0;
     }
 
+
+    public function getFakePriceAttribute($value){ 
+        //fake_price est sont equivalent , 
+        //faire attention au Attribute en fin de notation camel case et le s attributes
+        return $this->attributes['price'] + 100 ;
+    }
+
+    public function setPriceAttribute($value){ 
+            //A chaque fois que une valeur de Price en ce qui concerne ce tp sera modifier , ce muttateur sera appeler
+            /*
+            ceci est un exemple 
+                $events = App\Event::first();
+                $events->price =80;
+                $events->save();
+            
+            */
+            dd('ffff');
+    }
+
+
+
+
+
+
+
+
+    /*
+    
+    NB : 
+    - les Accesseur utilisent  les get ex : getFakePriceattribute .
+    - les mutateurs utilisent le set ex
+    
+    
+    */
 }

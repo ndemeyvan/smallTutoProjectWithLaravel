@@ -19,9 +19,7 @@
           <h4>{{$event->name}}</h4>
           <p>{{$event->description}}</p>
           <p> {!! format_price($event) !!}
-
-               
-            </p>
+          <p>un faux prix : {{ $event->fake_price }}</p>
           <p>{{$event->location}}</p>
           <p>Jour/Heure : {{ format_date($event->start_at) }}</p>
           </article>
