@@ -12,6 +12,12 @@
         <p class="my-2">{{$event->description}}</p>
     <a href="{{route('event.edit',['event'=>$event->id])}}" class="text-center">Modifier</a>
 
+    <form action="{{ route('event.destroy',['event'=>$event->id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <a href="" type="submit"  class="text-center ">Supprimer</a>
+    </form>
+
     </div>
 
 @endsection
