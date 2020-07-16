@@ -15,11 +15,11 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
-            $table->string('location');
-            $table->dateTime('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->decimal('price',5,2);
+            // $table->string('location');
+            // $table->dateTime('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            // $table->decimal('price',5,2);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events_');
+        Schema::dropIfExists('events');
     }
 }
