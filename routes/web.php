@@ -12,21 +12,24 @@
 */
 
 
-Route::get('/', function () {
-    // $post = Post::create(['id'=>3,'title'=>'un second title','body'=>'un second contenu']);
-    // $post->save(); au cas ou on a pas utiliser le create
+// Route::get('/', function () {
+//     // $post = Post::create(['id'=>3,'title'=>'un second title','body'=>'un second contenu']);
+//     // $post->save(); au cas ou on a pas utiliser le create
 
-    return view('welcome');
-});
-
-
-Route::get('/url', 'UrlController@create');
+//     return view('welcome');
+// });
 
 
-Route::post('/url','UrlController@store');
+// Route::get('/url', 'UrlController@create');
 
 
-Route::get('/{shortened}', 'UrlController@show');
+// Route::post('/url','UrlController@store');
+
+
+// Route::get('/{shortened}', 'UrlController@show');
+
+
+Route::resource('event', 'EventController');
 
 
 
