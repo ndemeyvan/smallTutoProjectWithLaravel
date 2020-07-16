@@ -29,6 +29,8 @@
 // Route::get('/{shortened}', 'UrlController@show');
 
 
+Route::get('/', 'EventController@index')->name("home");
+
 Route::resource('event', 'EventController');
 
 
