@@ -8,7 +8,7 @@
 
     <div class="container">
         <h2 class="mt-3">Bienvenu sur Event Brote</h2>
-        <h4 class="my-3">Voici nos evenements a venir</h4>
+        <h4 class="my-3">Voici nos evenements a venir ({{$events->count()}})</h4>
       
         @if (count($events)>0)
         <ul>

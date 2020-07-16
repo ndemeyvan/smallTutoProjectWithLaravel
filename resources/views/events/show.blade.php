@@ -11,7 +11,6 @@
         <h5>{{$event->title}}</h5>
         <p>{{$event->description}}</p>
 
-    <a href="{{route('home')}}"> << retourner a tous les evenements </a>
 
     </div>
 

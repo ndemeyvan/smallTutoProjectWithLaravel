@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    {{-- @include('layouts.partials._nav',["age"=>"25"]) --}}
+    @include('layouts.partials._nav',["age"=>"25"])
 
     {{-- les partials peuvents aussi transporter des variables --}}
     {{-- En consequent le partial en question a aussi acces a toutes les variables du layout ou il est inclu --}}

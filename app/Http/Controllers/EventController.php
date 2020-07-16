@@ -25,7 +25,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,['title'=>'required|min:3','description'=>'required|min:5']);
+        $title= $request->title;
+        $description =  $request->description;
+         Event::create([
+             'title' => $title,
+             'description' => $description,
+         ]);
+
+         return redirect(route('home'));
     }
 
     /**
