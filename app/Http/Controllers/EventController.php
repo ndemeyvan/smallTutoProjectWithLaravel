@@ -67,8 +67,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    { 
+        $event = Event::findOrFail($id);
+        return view('events.edit',compact('event'));
     }
 
     /**
@@ -80,7 +81,16 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['title'=>'required|min:3','description'=>'required|min:5']);
+        $title= $request->title;
+        $description =  $request->description;
+        $event = Event::findOrFail($id);
+        $event->update([
+             'title' => $title,
+             'description' => $description,
+         ]);
+
+         return redirect(route('event.show',$event->id));
     }
 
     /**

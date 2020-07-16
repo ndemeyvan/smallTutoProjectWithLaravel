@@ -8,9 +8,9 @@
 
     <div class="container">
         
-        <h5>{{$event->title}}</h5>
-        <p>{{$event->description}}</p>
-
+        <h5 class="mb-5">{{$event->title}}</h5>
+        <p class="my-2">{{$event->description}}</p>
+    <a href="{{route('event.edit',['event'=>$event->id])}}" class="text-center">Modifier</a>
 
     </div>
 
