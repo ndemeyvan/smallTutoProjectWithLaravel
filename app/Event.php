@@ -1,13 +1,31 @@
 <?php
 
 namespace App;
-
+use App\SlugRoutable;
+use App\Slugable;
 use Illuminate\Database\Eloquent\Model;
-
 //php artisan make:model nom
 class Event extends Model
 {
+
+    use SlugRoutable,Slugable;
     protected $fillable = ['title','description'];
+    
+      /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        static::bootTraits();
+        static::deleting(function($event){
+         // dd('suppression');
+        });
+    }
+
+
+
     // protected $dates =['start_at']; ceci me permet de convertir le string qui  met retourner par le model en DateTime , ici cela est le type CARBON
 
     // protected $casts =[

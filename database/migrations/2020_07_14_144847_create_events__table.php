@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
+            $table->string('slug')->unique();
             // $table->string('location');
             // $table->dateTime('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             // $table->decimal('price',5,2);

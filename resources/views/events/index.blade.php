@@ -14,7 +14,7 @@
         @if (!$events->isEmpty())
         <ul>
              @foreach ($events as $event)
-        <li><a href="{{route('event.show',['event'=>$event->id])}}">{{$event->title}}</a> </li>
+        <li><a href="{{route('event.show',['event'=>$event])}}">{{$event->title}}</a> </li>
         {{-- 
             ici haut j'utilise le helper route() le premier parametre est la route de ma ressource
          , et la seconde est a quoi va correspondre la resource generique {event} 

@@ -61,9 +61,10 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-       $event = Event::findOrFail($id);
+    public function show(Event $event)
+    {   
+        
+       //$event = Event::where('slug',$slug )->firstOrFail();
        return view('events.show',compact('event'));
     }
 
@@ -73,12 +74,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     { 
-        $event = Event::findOrFail($id);
-
- 
-        
+       // $event = Event::findOrFail($id);
         return view('events.edit',compact('event'));
     }
 
@@ -89,11 +87,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Event $event)
     {
         $title= $request->title;
         $description =  $request->description;
-        $event = Event::findOrFail($id);
+        //$event = Event::firstOrFail($event);
         $event->update([
              'title' => $title,
              'description' => $description,
@@ -101,7 +99,7 @@ class EventController extends Controller
          Flashy::message('Evenement modifier avec succes');
        
 
-         return redirect(route('event.show',$event->id));
+         return redirect(route('event.show',$event->slug));
     }
 
     /**
@@ -110,13 +108,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        $event = Event::findOrFail($id);
-        $event->delete($id);
-       flash('Evenement supprimer avec succes','danger');
-       
-        
+        //$event = Event::findOrFail($id);
+        $event->delete($event);
+        flash('Evenement supprimer avec succes','danger');
         return redirect(route('home'));
     }
 }
