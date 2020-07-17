@@ -17,14 +17,30 @@
     </style>
 </head>
 <body>
+
     @include('layouts.partials._nav',["age"=>"25"])
+
+  <div class="container">
+      
+        @if ( session()->has('notification.message') )
+            <div class="alert alert-{{session('notification.type')}}" role="alert">
+             {{session('notification.message')}}
+            </div>
+        @endif
+
+    @yield('content')
+
+  </div>
+
+
+    
 
     {{-- les partials peuvents aussi transporter des variables --}}
     {{-- En consequent le partial en question a aussi acces a toutes les variables du layout ou il est inclu --}}
     {{-- le @{{ }} dit a blade de ne pas interpreter un code qui peut etre utiliser par un autre framework js comme vuJs --}}
     {{-- On peut ausi utiliser notre code a linterieur d'un bloc @verbatim @endvarbatim au cas ou on as un bloc de code a ne pas interpreter par blade --}}
 
-    @yield('content')
+   
 
     <footer>
         @yield('footer')

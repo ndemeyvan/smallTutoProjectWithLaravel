@@ -6,11 +6,12 @@
 @section('content')
 
 
-    <div class="container">
+  
+
         <h2 class="mt-3">Bienvenu sur Event Brote</h2>
         <h4 class="my-3">Voici nos evenements a venir ({{$events->count()}})</h4>
       
-        @if (count($events)>0)
+        @if (!$events->isEmpty())
         <ul>
              @foreach ($events as $event)
         <li><a href="{{route('event.show',['event'=>$event->id])}}">{{$event->title}}</a> </li>
@@ -21,12 +22,13 @@
             @endforeach
         </ul>
         @else
-        <ul>
+            <ul>
                 <li>Nous n'avons aucun evenement pour l'instant</li>
             </ul>
         @endif
     
-    </div>
+   
+        
 
 @endsection
 

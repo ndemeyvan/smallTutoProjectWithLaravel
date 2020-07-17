@@ -6,26 +6,19 @@
 @section('content')
 
 
-    <div class="container">
+    
         
         <h5 class="mt-5 text-center" >Vous voulez creer un evenement ? c'est simple veillez remplir les champs ci dessous .</h5>
-    <form class="my-5" action="{{ route('event.store') }}" method="POST">
-            @csrf
-    <div class="form-group ">
-              <label>Nom</label>
-              <input type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"  id="title" name="title">
-              {!!$errors->first('title',' <small id="title" class="form-text text-danger">:message</small>')!!}
-            </div>
-            <div class="form-group">
-                <label>Votre description</label>
-                <textarea class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"  rows="3" id="description" name="description"></textarea>
-                {!!$errors->first('description',' <small id="description" class="form-text text-danger">:message</small>')!!}
-              </div>
-            <button type="submit" class="btn btn-primary btn-block ">Creer votre evenement</button>
 
-          </form>
+    <form class="my-5" action="{{ route('event.store') }}" method="POST">
+
+            @csrf
+
+            @include('events._form',['submitButtonText'=>'Creer votre evenement'])
+
+     </form>
  
-    </div>
+    
 
 @endsection
 

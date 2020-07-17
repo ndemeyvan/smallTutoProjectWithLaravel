@@ -5,28 +5,17 @@
 {{-- la haut j'extencie mon layout et en meme temps je passe une variable en parametre , cela peut etre utile --}}
 @section('content')
 
-
-    <div class="container">
-        
         <h5 class="mt-5 text-center" >Vous voulez Editer un evenement ? c'est simple veillez remplir les champs ci dessous .</h5>
-    <form class="my-5" action="{{ route('event.update',$event) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="form-group ">
-              <label>Nom</label>
-            <input type="text" class="form-control"  id="title" name="title" value="{{ old('title') ?? $event->title}}">
-              {!!$errors->first('title',' <small id="title" class="form-text text-danger">:message</small>')!!}
-            </div>
-            <div class="form-group">
-                <label>Votre description</label>
-                <textarea class="form-control"  rows="3" id="description" name="description">{{ old('title') ?? $event->description}}</textarea>
-                {!!$errors->first('description',' <small id="description" class="form-text text-danger">:message</small>')!!}
-              </div>
-            <button type="submit" class="btn btn-primary btn-block ">Modifier votre evenement</button>
+            <form class="my-5" action="{{ route('event.update',$event) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-          </form>
+                @include('events._form',['submitButtonText'=>'Modifier votre evenement'])
+
+                {{-- <button type="submit" class="btn btn-primary btn-block ">Modifier votre evenement</button> --}}
+
+             </form>
  
-    </div>
 
 @endsection
 

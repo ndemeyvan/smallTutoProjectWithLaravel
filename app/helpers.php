@@ -22,3 +22,13 @@ if(!function_exists('format_date')){
 
 }
 
+if(!function_exists('flash')){
+    function flash($message,$type ="success"){
+        session()->flash('notification.message',$message);
+        session()->flash('notification.type',$type);
+        
+   }
+
+
+}
+

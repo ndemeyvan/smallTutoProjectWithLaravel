@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Event;
+use App\Http\Requests\CreateEventFormRequest;
+use App\helpers;
 
 use Illuminate\Http\Request;
 
@@ -25,7 +27,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+
+        $event = new Event;
+        return view('events.create',compact('event'));
     }
 
     /**
@@ -34,10 +38,10 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEventFormRequest $request)
     {
 
-        $this->validate($request,['title'=>'required|min:3','description'=>'required|min:5']);
+        
         $title= $request->title;
         $description =  $request->description;
          Event::create([
@@ -45,6 +49,8 @@ class EventController extends Controller
              'description' => $description,
          ]);
 
+         flash('Evenement cree avec succes');
+         
          return redirect(route('home'));
     }
 
@@ -69,6 +75,9 @@ class EventController extends Controller
     public function edit($id)
     { 
         $event = Event::findOrFail($id);
+
+ 
+        
         return view('events.edit',compact('event'));
     }
 
@@ -81,7 +90,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['title'=>'required|min:3','description'=>'required|min:5']);
         $title= $request->title;
         $description =  $request->description;
         $event = Event::findOrFail($id);
@@ -89,6 +97,8 @@ class EventController extends Controller
              'title' => $title,
              'description' => $description,
          ]);
+       flash('Evenement modifier avec succes');
+       
 
          return redirect(route('event.show',$event->id));
     }
@@ -101,7 +111,10 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::destroy($id);
+        Event::delete($id);
+       flash('Evenement supprimer avec succes','danger');
+       
+        
         return redirect(route('event.home'));
     }
 }
