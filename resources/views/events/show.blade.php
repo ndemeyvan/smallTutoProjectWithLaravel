@@ -11,13 +11,10 @@
         <h5 class="mb-5">{{$event->title}}</h5>
         <p class="my-2">{{$event->description}}</p>
 
-    <a href="{{route('event.edit',['event'=>$event->id])}}" class="btn btn-primary ">Modifier</a>   <a href="{{ route('event.destroy',['event'=>$event->id]) }}" type="submit"  class="text-center  btn btn-danger ">Supprimer</a>
+    <a href="{{route('event.edit',['event'=>$event->id])}}" class="btn btn-primary ">Modifier</a> 
+    <a href="{{route('event.destroy',$event)}}" type="submit" data-method="DELETE" data-confirm="Etes vous sur ?"  class="btn btn-danger">Supprimer</a>
+    
 
-    {{-- <form action="{{ route('event.destroy',['event'=>$event->id]) }}" method="POST" class="inline-block">
-        @csrf
-        @method('DELETE')
-        <a href="" type="submit"  class="text-center  btn btn-danger ">Supprimer</a>
-    </form> --}}
 
   
 

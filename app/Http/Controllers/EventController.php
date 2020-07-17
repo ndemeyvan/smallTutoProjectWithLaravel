@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Http\Requests\CreateEventFormRequest;
 use App\helpers;
+use Flashy;
 
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ class EventController extends Controller
              'description' => $description,
          ]);
 
-         flash('Evenement cree avec succes');
+         Flashy::message('Evenement cree avec succes');
          
          return redirect(route('home'));
     }
@@ -97,7 +98,7 @@ class EventController extends Controller
              'title' => $title,
              'description' => $description,
          ]);
-       flash('Evenement modifier avec succes');
+         Flashy::message('Evenement modifier avec succes');
        
 
          return redirect(route('event.show',$event->id));
@@ -111,10 +112,11 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::delete($id);
+        $event = Event::findOrFail($id);
+        $event->delete($id);
        flash('Evenement supprimer avec succes','danger');
        
         
-        return redirect(route('event.home'));
+        return redirect(route('home'));
     }
 }

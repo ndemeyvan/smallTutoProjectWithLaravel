@@ -30,6 +30,7 @@
 
 
 Route::get('/', 'EventController@index')->name("home");
+Route::get('/delete/{event}', 'EventController@destroy')->name("deleteEvent");
 
 Route::resource('event', 'EventController');
 

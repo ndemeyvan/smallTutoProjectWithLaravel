@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        MercurySeries\Flashy\FlashyServiceProvider::class,
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
         /*
          * Application Service Providers...
          */
